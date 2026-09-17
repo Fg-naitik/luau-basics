@@ -547,3 +547,265 @@ Players.PlayerRemoving:Connect(function(player)
 
 end)
 
+----------------------------------------------------------------------
+-- 26. EVENTS
+----------------------------------------------------------------------
+
+-- Events are VERY important in Roblox.
+
+-- Example:
+-- Something happens -> event fires -> function runs.
+
+local part = workspace:FindFirstChild("Part")
+
+if part then
+
+    part.Touched:Connect(function(hit)
+
+        print("Something touched the part!")
+
+    end)
+
+end
+
+
+
+----------------------------------------------------------------------
+-- 27. FINDING OBJECTS
+----------------------------------------------------------------------
+
+-- workspace contains objects in the game world.
+
+local object = workspace:FindFirstChild("Part")
+
+if object then
+
+    print("Part found!")
+
+end
+
+
+
+----------------------------------------------------------------------
+-- 28. CREATING AN INSTANCE
+----------------------------------------------------------------------
+
+-- Instance.new() creates Roblox objects.
+
+local newPart = Instance.new("Part")
+
+newPart.Name = "MyPart"
+
+newPart.Size = Vector3.new(5, 1, 5)
+
+newPart.Position = Vector3.new(0, 10, 0)
+
+newPart.Anchored = true
+
+newPart.Parent = workspace
+
+
+
+----------------------------------------------------------------------
+-- 29. VECTOR3
+----------------------------------------------------------------------
+
+-- Vector3 represents a 3D position/direction.
+
+local position = Vector3.new(10, 5, 20)
+
+print(position.X)
+print(position.Y)
+print(position.Z)
+
+
+
+----------------------------------------------------------------------
+-- 30. MOVING AN OBJECT
+----------------------------------------------------------------------
+
+newPart.Position = Vector3.new(0, 20, 0)
+
+
+
+----------------------------------------------------------------------
+-- 31. COLORS
+----------------------------------------------------------------------
+
+-- Color3 represents colors.
+
+newPart.Color = Color3.fromRGB(255, 0, 0)
+
+
+
+----------------------------------------------------------------------
+-- 32. TASK.WAIT
+----------------------------------------------------------------------
+
+-- task.wait() pauses the current thread.
+
+print("Starting...")
+
+task.wait(2)
+
+print("2 seconds passed!")
+
+
+
+----------------------------------------------------------------------
+-- 33. TASK.SPAWN / TASK.DEFER
+----------------------------------------------------------------------
+
+-- Roblox provides task functions for scheduling code.
+
+task.spawn(function()
+
+    print("This runs separately.")
+
+end)
+
+
+
+----------------------------------------------------------------------
+-- 34. ERROR HANDLING
+----------------------------------------------------------------------
+
+-- pcall() means "protected call".
+-- It allows you to safely run code that might fail.
+
+local success, result = pcall(function()
+
+    return 10 / 2
+
+end)
+
+if success then
+
+    print("Result:", result)
+
+else
+
+    print("Something went wrong:", result)
+
+end
+
+
+
+----------------------------------------------------------------------
+-- 35. A SMALL GAME EXAMPLE
+----------------------------------------------------------------------
+
+-- Let's combine several concepts.
+
+local coins = 0
+
+
+local function collectCoin()
+
+    coins = coins + 10
+
+    print("Coin collected!")
+    print("Coins:", coins)
+
+end
+
+
+collectCoin()
+collectCoin()
+collectCoin()
+
+
+
+----------------------------------------------------------------------
+-- 36. SIMPLE LEVEL SYSTEM
+----------------------------------------------------------------------
+
+local xp = 0
+local level = 1
+
+
+local function addXP(amount)
+
+    xp = xp + amount
+
+    print("XP:", xp)
+
+    -- Every 100 XP = level up
+
+    if xp >= 100 then
+
+        level = level + 1
+
+        xp = xp - 100
+
+        print("LEVEL UP!")
+        print("New Level:", level)
+
+    end
+
+end
+
+
+addXP(50)
+addXP(50)
+addXP(75)
+
+
+
+----------------------------------------------------------------------
+-- 37. SIMPLE INVENTORY
+----------------------------------------------------------------------
+
+local inventory = {
+
+    "Sword",
+    "Potion",
+    "Shield"
+
+}
+
+
+local function showInventory()
+
+    print("------ INVENTORY ------")
+
+    for index, item in ipairs(inventory) do
+
+        print(index, item)
+
+    end
+
+end
+
+
+showInventory()
+
+
+
+----------------------------------------------------------------------
+-- 38. ADD ITEM TO INVENTORY
+----------------------------------------------------------------------
+
+local function addItem(item)
+
+    table.insert(inventory, item)
+
+    print(item .. " added to inventory!")
+
+end
+
+
+addItem("Bow")
+
+showInventory()
+
+
+
+----------------------------------------------------------------------
+-- END
+----------------------------------------------------------------------
+
+print("================================")
+print("Luau basics completed!")
+print("Now start building Roblox games!")
+print("================================")
