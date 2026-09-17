@@ -295,3 +295,255 @@ player.Health = 100
 
 print(player.Health)
 
+----------------------------------------------------------------------
+-- 13. PAIRS
+----------------------------------------------------------------------
+
+-- pairs() is commonly used to loop through key-value tables.
+
+
+
+for key, value in pairs(player) do
+
+    print(key, value)
+
+end
+
+
+
+----------------------------------------------------------------------
+-- 14. WHILE LOOP
+----------------------------------------------------------------------
+
+local count = 1
+
+while count <= 5 do
+
+    print("Count:", count)
+
+    count = count + 1
+
+end
+
+
+
+----------------------------------------------------------------------
+-- 15. FOR LOOP
+----------------------------------------------------------------------
+
+for i = 1, 5 do
+
+    print("Number:", i)
+
+end
+
+
+----------------------------------------------------------------------
+-- FOR LOOP WITH STEP
+----------------------------------------------------------------------
+
+for i = 0, 10, 2 do
+
+    print(i)
+
+end
+
+-- Output:
+-- 0
+-- 2
+-- 4
+-- 6
+-- 8
+-- 10
+
+
+
+----------------------------------------------------------------------
+-- 16. BREAK
+----------------------------------------------------------------------
+
+for i = 1, 10 do
+
+    if i == 6 then
+
+        break -- Immediately stops the loop
+
+    end
+
+    print(i)
+
+end
+
+
+
+----------------------------------------------------------------------
+-- 17. CONTINUE
+----------------------------------------------------------------------
+
+-- "continue" skips the current iteration
+-- and moves to the next iteration.
+
+for i = 1, 10 do
+
+    if i == 5 then
+        continue
+    end
+
+    print(i)
+
+end
+
+
+
+----------------------------------------------------------------------
+-- 18. RANDOM NUMBERS
+----------------------------------------------------------------------
+
+local randomNumber = math.random(1, 100)
+
+print("Random number:", randomNumber)
+
+
+----------------------------------------------------------------------
+-- RANDOM GAME EXAMPLE
+----------------------------------------------------------------------
+
+local dice = math.random(1, 6)
+
+print("Dice:", dice)
+
+
+
+----------------------------------------------------------------------
+-- 19. NIL CHECK
+----------------------------------------------------------------------
+
+local weapon = nil
+
+if weapon == nil then
+
+    print("Player doesn't have a weapon.")
+
+end
+
+
+
+----------------------------------------------------------------------
+-- 20. TYPE CHECKING
+----------------------------------------------------------------------
+
+local value = 100
+
+if type(value) == "number" then
+
+    print("This is a number.")
+
+end
+
+
+
+----------------------------------------------------------------------
+-- 21. MODULES / REQUIRE
+----------------------------------------------------------------------
+
+-- In Roblox, large projects are usually divided
+-- into multiple scripts.
+
+-- ModuleScripts allow you to create reusable code.
+
+-- Example:
+
+-- local MyModule = require(game.ServerScriptService.MyModule)
+
+-- Then you can use functions from MyModule.
+
+
+
+----------------------------------------------------------------------
+-- 22. OBJECT-ORIENTED PROGRAMMING (BASIC)
+----------------------------------------------------------------------
+
+-- Luau doesn't use classes exactly like Java.
+-- Tables + metatables are commonly used to create
+-- class-like structures.
+
+local PlayerData = {}
+
+PlayerData.__index = PlayerData
+
+
+function PlayerData.new(name)
+
+    local self = setmetatable({}, PlayerData)
+
+    self.Name = name
+    self.Level = 1
+    self.Coins = 0
+
+    return self
+
+end
+
+
+function PlayerData:addCoins(amount)
+
+    self.Coins = self.Coins + amount
+
+end
+
+
+local myPlayer = PlayerData.new("Naitik")
+
+myPlayer:addCoins(500)
+
+print(myPlayer.Name)
+print(myPlayer.Coins)
+
+
+
+----------------------------------------------------------------------
+-- 23. ROBLOX-SPECIFIC CODE
+----------------------------------------------------------------------
+
+-- Now we start using Roblox APIs.
+-- These only make sense when the script runs inside Roblox Studio.
+
+
+----------------------------------------------------------------------
+-- GETTING SERVICES
+----------------------------------------------------------------------
+
+-- Roblox provides services for different systems.
+
+local Players = game:GetService("Players")
+
+local RunService = game:GetService("RunService")
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+
+
+----------------------------------------------------------------------
+-- 24. GETTING PLAYERS
+----------------------------------------------------------------------
+
+-- PlayerAdded fires whenever a player joins.
+
+Players.PlayerAdded:Connect(function(player)
+
+    print(player.Name .. " joined the game!")
+
+end)
+
+
+
+----------------------------------------------------------------------
+-- 25. PLAYER LEAVING
+----------------------------------------------------------------------
+
+Players.PlayerRemoving:Connect(function(player)
+
+    print(player.Name .. " left the game!")
+
+end)
+
